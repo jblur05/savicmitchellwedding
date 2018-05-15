@@ -2,45 +2,92 @@
 
 :root {
     --wedding-pink: #fad7e8;
-    --carousel-img-max-height: 700px;
-    --carousel-img-max-width: 600px;
+    --carousel-img-max-height: 860px;
+    --carousel-img-max-width: 1500px;
     --carousel-frame-min-width: 625px;
-    --carousel-frame-min-height: 710px;
-    --carousel-frame-padding: 8px;
+    --carousel-frame-min-height: 860px;
+    --carousel-frame-padding: 12px;
 }
 
 @media screen and (max-width: 1920px){
-    
-}
-
-@media screen and (max-width: 1366px){
-    
-}
-
-@media screen and (max-width: 1024px){
-
-}
-
-@media screen and (max-width: 991px){
-
-}
-
-@media screen and (max-width: 767px) {
-    :root {
-        --carousel-img-max-height: 610px;
-        --carousel-img-max-width: 900px;
-        --carousel-frame-min-width: 950px;
-        --carousel-frame-min-height: 645px;
-        --carousel-frame-padding: 20px;
+    :root{ 
+        --carousel-img-max-height: 700px;
+        --carousel-img-max-width: 1350px;
+        --carousel-frame-min-width: 625px;
+        --carousel-frame-min-height: 700px;
+        --carousel-frame-padding: 12px;
     }
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 1367px){
+    :root{
+        --carousel-img-max-height: 750px;
+        --carousel-img-max-width: 1290px;
+        --carousel-frame-min-width: 1290px;
+        --carousel-frame-min-height: 750px;
+        --carousel-frame-padding: 18px;
+    }
+}
+
+@media screen and (max-width: 1367px) and (max-height: 800px){
     :root {
-        --carousel-img-max-height: 250px;
-        --carousel-img-max-width: 370px;
-        --carousel-frame-min-width: 385px;
-        --carousel-frame-min-height: 263px;
+        --carousel-img-max-height: 550px;
+        --carousel-img-max-width: 977px;
+        --carousel-frame-min-width: 625px;
+        --carousel-frame-min-height: 550px;
+        --carousel-frame-padding: 10px;
+    }
+}
+
+@media screen and (max-width: 1025px){
+    :root {
+        --carousel-img-max-height: 550px;
+        --carousel-img-max-width: 977px;
+        --carousel-frame-min-width: 625px;
+        --carousel-frame-min-height: 550px;
+        --carousel-frame-padding: 10px;
+    }
+}
+
+@media screen and (max-width: 1025px) and (max-height: 700px){
+    :root {
+        --carousel-img-max-height: 550px;
+        --carousel-img-max-width: 977px;
+        --carousel-frame-min-width: 625px;
+        --carousel-frame-min-height: 550px;
+        --carousel-frame-padding: 10px;
+    }
+}
+
+/*medium tablet*/
+@media screen and (max-width: 801px) {
+    :root {
+        --carousel-img-max-height: 410px;
+        --carousel-img-max-width: 790px;
+        --carousel-frame-min-width: 600px;
+        --carousel-frame-min-height: 410px;
+        --carousel-frame-padding: 10px;
+    }
+}
+
+/*max phone style*/
+@media screen and (max-width: 500px) {
+    :root {
+        --carousel-img-max-height: 233px;
+        --carousel-img-max-width: 400px;
+        --carousel-frame-min-width: 400px;
+        --carousel-frame-min-height: 245px;
+        --carousel-frame-padding: 7px;
+    }
+}
+
+/*max phone style*/
+@media screen and (max-width: 410px) {
+    :root {
+        --carousel-img-max-height: 233px;
+        --carousel-img-max-width: 345px;
+        --carousel-frame-min-width: 347px;
+        --carousel-frame-min-height: 245px;
         --carousel-frame-padding: 7px;
     }
 }
