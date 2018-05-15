@@ -1,0 +1,82 @@
+@import "fonts.css";
+
+:root {
+    --wedding-pink: #fad7e8;
+    --carousel-img-max-height: 700px;
+    --carousel-img-max-width: 600px;
+    --carousel-frame-min-width: 625px;
+    --carousel-frame-min-height: 710px;
+    --carousel-frame-padding: 8px;
+}
+
+@media screen and (max-width: 1920px){
+    
+}
+
+@media screen and (max-width: 1366px){
+    
+}
+
+@media screen and (max-width: 1024px){
+
+}
+
+@media screen and (max-width: 991px){
+
+}
+
+@media screen and (max-width: 767px) {
+    :root {
+        --carousel-img-max-height: 610px;
+        --carousel-img-max-width: 900px;
+        --carousel-frame-min-width: 950px;
+        --carousel-frame-min-height: 645px;
+        --carousel-frame-padding: 20px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    :root {
+        --carousel-img-max-height: 250px;
+        --carousel-img-max-width: 370px;
+        --carousel-frame-min-width: 385px;
+        --carousel-frame-min-height: 263px;
+        --carousel-frame-padding: 7px;
+    }
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: var(--wedding-pink);
+}
+
+#root {
+    flex: 1 0 auto;
+}
+
+.main-bg-color {
+    background-color: var(--wedding-pink);
+}
+
+.has-top-shadow {
+    box-shadow: 0 -2px 3px hsla(0,0%,4%,.1);
+}
+
+.short-footer {
+    padding-bottom:0rem;
+}
+
+.is-maxheight {
+    height: 100%;
+}
+
+.navbar-item.is-logo {
+    position: absolute;
+    left: 50%;
+    margin-left: -63px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
