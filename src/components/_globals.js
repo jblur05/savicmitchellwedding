@@ -3,7 +3,6 @@
 // PascalCased version of their file name.
 
 import Vue from 'vue'
-import '@/assets/states.js'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import Buefy from 'buefy'
