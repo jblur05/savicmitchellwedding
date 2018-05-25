@@ -1,12 +1,14 @@
 <template>
-  <div class="carousel-view">
-    <transition class='carousel' name="carouseltrans" mode="out-in">
-        <img class="eng-img" :src="visibleImageURL" :key="visibleImage"/>
-    </transition>
-    <!-- <div class='carousel-controls'>
-      <button class='carousel-controls__button' @click="previous">prev</button>
-      <button class='carousel-controls__button' @click="next">next</button>
-    </div> -->
+  <div class="frame">
+    <div class="carousel-view">
+      <transition class='carousel' name="carouseltrans" mode="out-in">
+          <img class="eng-img" :src="visibleImageURL" :key="visibleImage"/>
+      </transition>
+      <!-- <div class='carousel-controls'>
+        <button class='carousel-controls__button' @click="previous">prev</button>
+        <button class='carousel-controls__button' @click="next">next</button>
+      </div> -->
+    </div>
   </div>
 </template>
 

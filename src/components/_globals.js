@@ -3,8 +3,13 @@
 // PascalCased version of their file name.
 
 import Vue from 'vue'
+import '@/assets/states.js'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+import Buefy from 'buefy'
+import 'buefy/lib/buefy.css'
+
+Vue.use(Buefy)
 
 // https://webpack.js.org/guides/dependency-management/#require-context
 const requireComponent = require.context(
