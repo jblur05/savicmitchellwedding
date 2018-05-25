@@ -38,7 +38,7 @@ export default {
     const self = this
     this.interval = setInterval(function () {
       self.next()
-    }, 8000)
+    }, 16000)
   },
   beforeDestroy () {
     console.log('beforeDestroy')
