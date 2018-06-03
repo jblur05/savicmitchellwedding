@@ -1,65 +1,70 @@
 <template>
-    <div>
-        <section>
-            <b-field grouped >
-                <a class="button is-primary"
-                   @click="isComponentModalActive=true">Add Guest</a>
-            </b-field>
-            <b-field class="file">
-                <b-upload v-model="files">
-                    <a class="button is-primary">
-                        <b-icon icon="upload"></b-icon>
-                        <span>Click to upload</span>
-                    </a>
-                </b-upload>
-                <span class="file-name"
-                    v-if="files && files.length">
-                    {{ files[0].name }}
-                </span>
-            </b-field>
-        </section>
-        <b-table :data="guests"
-                 :bordered=true
-                 :striped=true
-                 :narrowed=true
-                 :hoverable=true>
-            <template slot-scope="props">
-                <b-table-column field="id" label="ID" width="40" numeric>
-                        {{ props.row.id }}
-                </b-table-column>
-                <b-table-column field="name" label="Name" width="40">
-                        {{ props.row.name }}
-                </b-table-column>
-                <b-table-column field="num_guests" label="Guests" width="40" numeric>
-                        {{ props.row.num_guests }}
-                </b-table-column>
-                <b-table-column field="address" label="Address" width="40">
-                        {{ props.row.address }}
-                </b-table-column>
-                <b-table-column field="menu_selection" label="Menu Selection" width="40">
-                        {{ props.row.menu_selection }}
-                </b-table-column>
-                <b-table-column field="rsvp" label="RSVP Date" width="40">
-                        {{ props.row.rsvp }}
-                </b-table-column>
+    <v-content>
+        <v-card white>
+          <file-upload v-model="filename" @formData="uploadFile"></file-upload>
+          <add-user-modal :isComponentModalActive="isComponentModalActive" v-on:close-add-guest-modal="isComponentModalActive=false" v-on:add-new-guest="addNewGuest"></add-user-modal>
+        </v-card>
+        <v-layout>
+          <v-data-table
+            :headers="headers"
+            :items="guests"
+            hide-actions
+            class="elevation-1"
+            key='aTable'>
+            <template slot="items" slot-scope="props">
+              <td class="text-xs-right">{{ props.item.id }}</td>
+              <td>{{ props.item.name }}</td>
+              <td>{{ props.item.numGuests }}</td>
+              <td>{{ props.item.address + ' ' + props.item.city + ' ' + props.item.state + ' ' + props.item.zip_code + ' ' + props.item.country }}</td>
+              <td>{{ props.item.rsvp }}</td>
+              <td>{{ props.item.rsvp_url }}</td>
             </template>
-        </b-table>
-        <add-user-modal :isComponentModalActive="isComponentModalActive" v-on:close-add-guest-modal="isComponentModalActive=false"
-        v-on:add-new-guest="addNewGuest"></add-user-modal>
-    </div>
+          </v-data-table>
+       </v-layout>
+    </v-content>
 </template>
 
 <script>
 import AddUserModal from './AddUserModal.vue'
+import FileUpload from './FileUpload.vue'
+import axios from 'axios'
 
 export default {
   components: {
-    AddUserModal
+    AddUserModal, FileUpload
   },
   data () {
     return {
+      filename: '',
       isComponentModalActive: false,
-      files: ''
+      headers: [
+        {
+          text: 'ID',
+          value: 'id',
+          align: 'left',
+          sortable: 'true'
+        },
+        {
+          text: 'Name',
+          value: 'name'
+        },
+        {
+          text: 'Number Guests',
+          value: 'numGuests'
+        },
+        {
+          text: 'Address',
+          value: 'address'
+        },
+        {
+          text: 'RSVP Date',
+          value: 'address'
+        },
+        {
+          text: 'RSVP URL',
+          value: 'rsvpURL'
+        } ],
+      files: []
     }
   },
   computed: {
@@ -69,14 +74,17 @@ export default {
   },
   methods: {
     addNewGuest (guestInfo) {
-      let address = guestInfo.address + ' ' + guestInfo.city + ', ' + guestInfo.state + ' ' + guestInfo.zipCode
-      this.$store.dispatch('addGuest', this.createGuest('todo', guestInfo.name, guestInfo.numGuests, address, '', ''))
+      this.$store.dispatch('addGuest', this.$createGuest(guestInfo.guestName, guestInfo.numGuests, false, guestInfo.address, guestInfo.city, guestInfo.state, guestInfo.country, guestInfo.zipCode))
     },
-    createGuest (id, name, numGuests, address, menuSelection, rsvp) {
-      return { 'id': id, 'name': name, 'num_guests': numGuests, 'address': address, 'menu_selection': menuSelection, 'rsvp': rsvp }
-    },
-    uploadFile () {
-
+    uploadFile (formData) {
+      formData.append('file', this.files[0])
+      axios.post(
+        'http://localhost:8000/upload/', formData, { headers: { 'Content-Type': 'multipart/form-data' } }
+      ).then(function () {
+        console.log('SUCCESS!!')
+      }).catch(function () {
+        console.log('FAILURE!!')
+      })
     }
   }
 }

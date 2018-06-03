@@ -5,10 +5,7 @@
 import Vue from 'vue'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
-import Buefy from 'buefy'
-import 'buefy/lib/buefy.css'
-
-Vue.use(Buefy)
+import {globalStatesList} from '../assets/states.js'
 
 // https://webpack.js.org/guides/dependency-management/#require-context
 const requireComponent = require.context(
@@ -19,6 +16,8 @@ const requireComponent = require.context(
   // Only include "_base-" prefixed .vue files
   /[\w-]+\.vue$/
 )
+
+Vue.prototype.$globalStatesList = globalStatesList
 
 // For each matching file name...
 requireComponent.keys().forEach(fileName => {

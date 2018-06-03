@@ -1,6 +1,4 @@
-import Vue from 'vue'
-
-Vue.prototype.$globalStatesList = [
+export const globalStatesList = [
 {
     "name": "Alabama",
     "abbreviation": "AL"
