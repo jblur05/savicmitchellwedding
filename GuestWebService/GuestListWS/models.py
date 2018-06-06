@@ -23,7 +23,7 @@ class Guest(models.Model):
     state = models.CharField(max_length=300, help_text="Guest state")
     zip_code = models.CharField(max_length=10, help_text="The zip code")
     country = models.CharField(max_length=300, default="USA", help_text="Guest country")
-    rsvp = models.DateField(blank=True, null=True, help_text="The date the guest sent rsvp")
+    rsvp = models.DateTimeField(blank=True, null=True, help_text="The date the guest sent rsvp")
     rsvp_url = models.CharField(max_length=7, unique=True, default=generate_url, help_text="URL to use when submitting RSVP")
     will_attend = models.BooleanField(default=False, help_text="Will guest attend")
 

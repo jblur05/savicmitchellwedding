@@ -29,6 +29,8 @@ dev_env/
 *.db
 *~
 .*
+*db.sqlite3
+0001_initial.py
 
 /site/
 /htmlcov/

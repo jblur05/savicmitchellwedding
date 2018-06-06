@@ -8,9 +8,10 @@
           <p>Number of Reserved Seats: {{ curGuest.familymember.length }}</p>
           <p v-if="seatsNeeded > 0">Guests Attending: {{ seatsNeeded }}</p>
           <p v-else>Not Attending</p>
+          <p v-if="curGuest.rsvp">RSVP Recieved: {{ curGuest.rsvp }}</p>
         </div>
         <div>
-          <v-btn white>Submit</v-btn>
+          <v-btn @click.stop="submitRSVP" white>Submit</v-btn>
         </div>
       </v-card>
     </v-flex>
@@ -42,13 +43,11 @@
       <v-card>
         <p class="title" xs10 offset-xs1>Find Your RSVP</p>
         <v-text-field
-          v-validate="'required|max:10'"
           v-model="findRsvp.name"
           label="Name"
           data-vv-name="findRsvp.name"
           required></v-text-field>
         <v-text-field
-          v-validate="'required|max:10'"
           v-model="findRsvp.rsvpURL"
           label="RSVP Code"
           data-vv-name="findRsvp.URL"
@@ -69,7 +68,6 @@
 
 export default {
   created () {
-    console.log('created')
     if (!this.curGuest && this.$route.params.guestURL) {
       this.$store.dispatch('getGuest', this.$route.params.guestURL)
       // axios.get('http://localhost:8000/rsvp/' + this.$route.params.guestURL)
@@ -99,7 +97,6 @@ export default {
   data () {
     return {
       radio: '',
-      willAttend: false,
       findRsvp: {
         name: '',
         rsvpURL: ''
@@ -130,7 +127,6 @@ export default {
   },
   computed: {
     seatsNeeded () {
-      console.log('yo')
       var seats = 0
       if (this.curGuest) {
         for (var member of this.curGuest.familymember) {
@@ -145,10 +141,7 @@ export default {
       return this.$store.state.curRSVPURL
     },
     curGuest () {
-      console.log('YOYO')
       var guest = this.$store.state.currentGuest
-      console.log(guest)
-      console.log(this.$store.state.currentGuest)
       if (guest) {
         // check if attendence is set
         if (!guest.will_attend) {
@@ -159,13 +152,24 @@ export default {
           if (!member.food_choice) {
             member.food_choice = self.foodChoices[0]
           }
-          console.log(member.food_choice)
         }
-
-        console.log(guest.familymember[0])
       }
-      console.log(guest)
       return guest
+    },
+    rsvpDate () {
+      if (this.curGuest) {
+        return this.curGuest.rsvp
+      }
+      return undefined
+    }
+  },
+  methods: {
+    submitRSVP () {
+      if (this.curGuest) {
+        let willAttend = this.seatsNeeded > 0
+        console.log(this.curGuest)
+        this.$store.dispatch('submitRSVP', willAttend)
+      }
     }
   }
 }

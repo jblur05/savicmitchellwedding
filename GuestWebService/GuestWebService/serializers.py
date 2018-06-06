@@ -2,7 +2,11 @@ from GuestListWS.models import Guest, FamilyMember
 
 #DJANGO REST FRAMEWORK INCLUDES
 from django.contrib.auth.models import User, Group
+from django.db.models.fields import DateTimeField
 from rest_framework import serializers
+
+import traceback
+import sys
 
 class GuestSerializer(serializers.ModelSerializer):
 	id = serializers.UUIDField()
@@ -48,3 +52,12 @@ class RSVPSerializer(serializers.ModelSerializer):
 		for family_member_data in family_members_data:
 			FamilyMember.objects.create(guest=guest, **family_member_data)
 		return guest
+
+class RSVPSubmitSerializer(serializers.ModelSerializer):
+	rsvp = DateTimeField()
+	class Meta:
+		model = Guest
+		fields = ('id', 'name', 'address', 'will_attend', 'city', 'state', 'zip_code', 'country', 'rsvp', 'rsvp_url')
+
+
+
