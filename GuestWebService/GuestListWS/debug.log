@@ -1,0 +1,368 @@
+(0.002) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' AND "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'); args=('4da387fba00b49fe8408ca67a25b3f6c', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' AND NOT ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c')) LIMIT 1; args=('4da387fba00b49fe8408ca67a25b3f6c', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."rsvp_url" = 'kG8KF3p' AND NOT ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c')) LIMIT 1; args=('kG8KF3p', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'cef9f454a29346c6ad7d4f531df88e53' LIMIT 1; args=('cef9f454a29346c6ad7d4f531df88e53',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'bf83741ee97e4f11884948f8dc6515f4' LIMIT 1; args=('bf83741ee97e4f11884948f8dc6515f4',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = '3de501dc4ea447ae8e3b3a0acc415614' LIMIT 1; args=('3de501dc4ea447ae8e3b3a0acc415614',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'f0abcd723ea542e1bc4de0446b8c9abd' LIMIT 1; args=('f0abcd723ea542e1bc4de0446b8c9abd',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 400 318
+"GET /rsvp/kG8KF3p HTTP/1.1" 301 0
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest"; args=()
+"GET /guests/ HTTP/1.1" 200 230
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest"; args=()
+"GET /guests/ HTTP/1.1" 200 230
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."rsvp_url" = 'kG8KF3p'; args=('kG8KF3p',)
+(0.001) SELECT "GuestListWS_familymember"."id", "GuestListWS_familymember"."guest_id", "GuestListWS_familymember"."name", "GuestListWS_familymember"."food_choice" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."guest_id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+"GET /rsvp/kG8KF3p/ HTTP/1.1" 200 779
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' AND "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'); args=('4da387fba00b49fe8408ca67a25b3f6c', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' AND NOT ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c')) LIMIT 1; args=('4da387fba00b49fe8408ca67a25b3f6c', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."rsvp_url" = 'kG8KF3p' AND NOT ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c')) LIMIT 1; args=('kG8KF3p', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'cef9f454a29346c6ad7d4f531df88e53' LIMIT 1; args=('cef9f454a29346c6ad7d4f531df88e53',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'bf83741ee97e4f11884948f8dc6515f4' LIMIT 1; args=('bf83741ee97e4f11884948f8dc6515f4',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = '3de501dc4ea447ae8e3b3a0acc415614' LIMIT 1; args=('3de501dc4ea447ae8e3b3a0acc415614',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'f0abcd723ea542e1bc4de0446b8c9abd' LIMIT 1; args=('f0abcd723ea542e1bc4de0446b8c9abd',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 400 318
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' AND "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'); args=('4da387fba00b49fe8408ca67a25b3f6c', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' AND NOT ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c')) LIMIT 1; args=('4da387fba00b49fe8408ca67a25b3f6c', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."rsvp_url" = 'kG8KF3p' AND NOT ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c')) LIMIT 1; args=('kG8KF3p', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'cef9f454a29346c6ad7d4f531df88e53' LIMIT 1; args=('cef9f454a29346c6ad7d4f531df88e53',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'bf83741ee97e4f11884948f8dc6515f4' LIMIT 1; args=('bf83741ee97e4f11884948f8dc6515f4',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = '3de501dc4ea447ae8e3b3a0acc415614' LIMIT 1; args=('3de501dc4ea447ae8e3b3a0acc415614',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'f0abcd723ea542e1bc4de0446b8c9abd' LIMIT 1; args=('f0abcd723ea542e1bc4de0446b8c9abd',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 400 318
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' AND "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'); args=('4da387fba00b49fe8408ca67a25b3f6c', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' AND NOT ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c')) LIMIT 1; args=('4da387fba00b49fe8408ca67a25b3f6c', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_guest" WHERE ("GuestListWS_guest"."rsvp_url" = 'kG8KF3p' AND NOT ("GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c')) LIMIT 1; args=('kG8KF3p', '4da387fba00b49fe8408ca67a25b3f6c')
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'cef9f454a29346c6ad7d4f531df88e53' LIMIT 1; args=('cef9f454a29346c6ad7d4f531df88e53',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'bf83741ee97e4f11884948f8dc6515f4' LIMIT 1; args=('bf83741ee97e4f11884948f8dc6515f4',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = '3de501dc4ea447ae8e3b3a0acc415614' LIMIT 1; args=('3de501dc4ea447ae8e3b3a0acc415614',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT (1) AS "a" FROM "GuestListWS_familymember" WHERE "GuestListWS_familymember"."id" = 'f0abcd723ea542e1bc4de0446b8c9abd' LIMIT 1; args=('f0abcd723ea542e1bc4de0446b8c9abd',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c'; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 400 318
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+"OPTIONS /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 200 0
+Internal Server Error: /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c
+Traceback (most recent call last):
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 54, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 84, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 69, in update
+    serializer.is_valid(raise_exception=True)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/serializers.py", line 236, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/serializers.py", line 434, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/serializers.py", line 488, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/fields.py", line 524, in run_validation
+    self.run_validators(value)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/fields.py", line 538, in run_validators
+    validator(value)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/validators.py", line 80, in __call__
+    queryset = self.exclude_current_instance(queryset)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/validators.py", line 74, in exclude_current_instance
+    return queryset.exclude(pk=self.instance.pk)
+AttributeError: 'QuerySet' object has no attribute 'pk'
+(0.001) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 500 16477
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Internal Server Error: /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c
+Traceback (most recent call last):
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 54, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 84, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 67, in update
+    instance = self.get_object()
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 50, in get_object
+    return super.get_object(self)
+AttributeError: type object 'super' has no attribute 'get_object'
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 500 15295
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Internal Server Error: /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c
+Traceback (most recent call last):
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 55, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 84, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 67, in update
+    instance = self.get_object()
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 48, in get_object
+    objecter = super.get_object(self)
+AttributeError: type object 'super' has no attribute 'get_object'
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 500 15299
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Internal Server Error: /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c
+Traceback (most recent call last):
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 56, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 84, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 67, in update
+    instance = self.get_object()
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 48, in get_object
+    objecter = super.get_object(self)
+AttributeError: type object 'super' has no attribute 'get_object'
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 500 15299
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Internal Server Error: /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c
+Traceback (most recent call last):
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 54, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 84, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 69, in update
+    serializer.is_valid(raise_exception=True)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/serializers.py", line 236, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/serializers.py", line 434, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/serializers.py", line 488, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/fields.py", line 524, in run_validation
+    self.run_validators(value)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/fields.py", line 538, in run_validators
+    validator(value)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/validators.py", line 80, in __call__
+    queryset = self.exclude_current_instance(queryset)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/validators.py", line 74, in exclude_current_instance
+    return queryset.exclude(pk=self.instance.pk)
+AttributeError: 'str' object has no attribute 'pk'
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 500 16467
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Internal Server Error: /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c
+Traceback (most recent call last):
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 60, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 84, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 67, in update
+    instance = self.get_object()
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 52, in get_object
+    obj = get_object_or_404(queryset, **filter)
+NameError: name 'get_object_or_404' is not defined
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" WHERE "GuestListWS_guest"."id" = '4da387fba00b49fe8408ca67a25b3f6c' LIMIT 21; args=('4da387fba00b49fe8408ca67a25b3f6c',)
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 500 15279
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Internal Server Error: /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c
+Traceback (most recent call last):
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 60, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 84, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/james/.virtualenvs/WeddingSiteDjangoEnv/lib/python3.6/site-packages/rest_framework/mixins.py", line 67, in update
+    instance = self.get_object()
+  File "/Users/james/code_projects/wedding-site/GuestWebService/GuestListWS/views.py", line 52, in get_object
+    obj = get_object_or_404(queryset, **filter)
+NameError: name 'get_object_or_404' is not defined
+(0.000) SELECT "GuestListWS_guest"."id", "GuestListWS_guest"."name", "GuestListWS_guest"."address", "GuestListWS_guest"."city", "GuestListWS_guest"."state", "GuestListWS_guest"."zip_code", "GuestListWS_guest"."country", "GuestListWS_guest"."rsvp", "GuestListWS_guest"."rsvp_url", "GuestListWS_guest"."will_attend" FROM "GuestListWS_guest" LIMIT 21; args=()
+"PATCH /rsvp/4da387fb-a00b-49fe-8408-ca67a25b3f6c HTTP/1.1" 500 15279

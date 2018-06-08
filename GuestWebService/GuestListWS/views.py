@@ -5,17 +5,36 @@ from rest_framework import status
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.parsers import MultiPartParser, FormParser
+from django.shortcuts import get_object_or_404
 import csv
 import io
 
 from GuestWebService.serializers import GuestSerializer, CreateGuestSerializer, FamilyMemberSerializer, RSVPSerializer, RSVPSubmitSerializer
 from .models import Guest, FamilyMember
 
+class MultipleFieldLookupMixin(object):
+    """
+    Apply this mixin to any view or viewset to get multiple field filtering
+    based on a `lookup_fields` attribute, instead of the default single field filtering.
+    """
+    def get_object(self):
+        print("yoyo")
+        queryset = self.get_queryset()             # Get the base queryset
+        queryset = self.filter_queryset(queryset)  # Apply any filter backends
+        filter = {}
+        for field in self.lookup_fields:
+            if self.kwargs[field]: # Ignore empty fields.
+                print(self.kwargs[field])
+                filter[field] = self.kwargs[field]
+        obj = get_object_or_404(queryset, **filter)  # Lookup the object
+        self.check_object_permissions(self.request, obj)
+        return obj
+
 class GuestList(generics.ListCreateAPIView):
     queryset = Guest.objects.all()
     serializer_class = GuestSerializer
 
-class GuestDetail(generics.RetrieveUpdateDestroyAPIView):
+class GuestDetail(generics.RetrieveAPIView):
     queryset = Guest.objects.all()
     serializer_class = GuestSerializer
 
@@ -31,11 +50,10 @@ class FamilyMemberDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = FamilyMember.objects.all()
     serializer_class = FamilyMemberSerializer
 
-class RSVPRetriever(generics.ListAPIView):
+class RSVPRetriever(MultipleFieldLookupMixin, generics.RetrieveAPIView):
+    queryset = Guest.objects.all()
     serializer_class = RSVPSerializer
-    
-    def get_queryset(self):
-        return Guest.objects.filter(rsvp_url=self.kwargs['guestUrl'])
+    lookup_fields = ('rsvp_url', 'name')
 
 class RSVPUpdater(generics.UpdateAPIView):
     queryset = Guest.objects.all()

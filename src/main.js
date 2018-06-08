@@ -7,6 +7,7 @@ import '@/components/_globals'
 import store from './store/store.js'
 import Vuetify from 'vuetify'
 import Buefy from 'buefy'
+// import MobileDetect from 'mobile-detect'
 
 // css
 // import 'buefy/lib/buefy.css'
@@ -31,10 +32,10 @@ const v = new Vue({
 
 v.$store.dispatch('getGuests')
 
-v.$store.dispatch('getGuests')
-
 Vue.prototype.$createGuest = (name, numGuests, willAttend, address, city, state, country, zipCode) => {
   let value = {'name': name, 'num_guests': numGuests, 'willAttend': willAttend, 'address': address, 'city': city, 'state': state, 'zip_code': zipCode, 'country': country}
   console.log(value)
   return value
 }
+
+// Vue.prototype.$mobileDetect = new MobileDetect(req.headers['user-agent'])

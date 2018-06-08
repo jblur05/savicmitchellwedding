@@ -18,13 +18,15 @@
     "buefy": "^0.6.6",
     "eslint-plugin-standard": "^3.1.0",
     "material-design-icons-iconfont": "^3.0.3",
+    "mobile-detect": "^1.4.1",
     "vue": "^2.5.2",
     "vue-carousel": "^0.6.15",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.16",
     "vuetify": "^1.0.18",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

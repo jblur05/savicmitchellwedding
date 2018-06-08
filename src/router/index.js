@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home.vue'
 import RSVP from '@/components/rsvp/RSVP.vue'
 import Manage from '@/components/manage/GuestList.vue'
+import Engagements from '@/components/engagements/Engagements.vue'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/manage',
       name: 'Manage',
       component: Manage
+    },
+    {
+      path: '/engagements',
+      name: 'Engagements',
+      component: Engagements
     }
   ]
 })
