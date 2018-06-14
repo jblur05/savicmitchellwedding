@@ -8,31 +8,26 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 import csv
 import io
+import json
 
 from GuestWebService.serializers import GuestSerializer, CreateGuestSerializer, FamilyMemberSerializer, RSVPSerializer, RSVPSubmitSerializer
 from .models import Guest, FamilyMember
 
-class MultipleFieldLookupMixin(object):
-    """
-    Apply this mixin to any view or viewset to get multiple field filtering
-    based on a `lookup_fields` attribute, instead of the default single field filtering.
-    """
-    def get_object(self):
-        print("yoyo")
-        queryset = self.get_queryset()             # Get the base queryset
-        queryset = self.filter_queryset(queryset)  # Apply any filter backends
-        filter = {}
-        for field in self.lookup_fields:
-            if self.kwargs[field]: # Ignore empty fields.
-                print(self.kwargs[field])
-                filter[field] = self.kwargs[field]
-        obj = get_object_or_404(queryset, **filter)  # Lookup the object
-        self.check_object_permissions(self.request, obj)
-        return obj
-
 class GuestList(generics.ListCreateAPIView):
     queryset = Guest.objects.all()
     serializer_class = GuestSerializer
+
+    def get(self, request, *args, **kwargs):
+        guests = Guest.objects.all()
+        familymembers = {}
+        for guest in guests:
+            #get all family members as a python json list for this guest and store them in a map so that we can add them to the response
+            #later
+            familymembers[str(guest.id)] = [familymember for familymember in FamilyMember.objects.filter(guest=guest).values()]
+        response = super().get(request, *args, **kwargs)
+        for guest in response.data:
+            guest['num_guests'] = len(familymembers.get(guest.get('id')))
+        return response
 
 class GuestDetail(generics.RetrieveAPIView):
     queryset = Guest.objects.all()
@@ -50,10 +45,16 @@ class FamilyMemberDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = FamilyMember.objects.all()
     serializer_class = FamilyMemberSerializer
 
-class RSVPRetriever(MultipleFieldLookupMixin, generics.RetrieveAPIView):
-    queryset = Guest.objects.all()
+class RSVPRetriever(generics.RetrieveAPIView):
     serializer_class = RSVPSerializer
-    lookup_fields = ('rsvp_url', 'name')
+
+    def get_object(self):
+        queryset = self.get_queryset()
+        queryset = self.filter_queryset(queryset)  # Apply any filter backends
+        return get_object_or_404(queryset)
+
+    def get_queryset(self):
+        return Guest.objects.filter(name__iexact=self.kwargs.get('name')).filter(rsvp_url=self.kwargs.get('rsvp_url'))
 
 class RSVPUpdater(generics.UpdateAPIView):
     queryset = Guest.objects.all()
@@ -77,6 +78,29 @@ class RSVPUpdater(generics.UpdateAPIView):
             return Response(status=200, data=serializer.data)
         return Response(status=400)
 
+class GuestFileUploaderGeneric(generics.ListCreateAPIView):
+    parser_classes = (MultiPartParser, FormParser,)
+    serializer_class = GuestSerializer
+
+    def post(self, request, *args, **kwargs):
+        upload = request.FILES['data']
+        
+        upload.seek(0)        
+        fileReader = csv.DictReader(io.StringIO(upload.read().decode('utf-8')))
+
+        for row in fileReader:
+            guestSerializer = Guest(name=row['name'],
+                            address=row['address'],
+                            city=row['city'],
+                            state=row['state'],
+                            zip_code=row['zip_code'],
+                            country=row['country'])
+            guestSerializer.save()
+            
+            for i in range(0, int(row['num_guests'])):
+                FamilyMember(guest=guestSerializer, name='guest_' + str(i)).save()
+        return Response(status=200)
+
 class GuestFileUploader(APIView):
     parser_classes = (MultiPartParser, FormParser,)
 
@@ -87,15 +111,15 @@ class GuestFileUploader(APIView):
         fileReader = csv.DictReader(io.StringIO(upload.read().decode('utf-8')))
 
         for row in fileReader:
-            guestSerializer = Guest(name=row['Last Name'],
-                            address=row['Home Street'] + row['Home Street 2'],
-                            city=row['Home City'],
-                            state=row['Home State'],
-                            zip_code=row['Home Postal Code'],
-                            country=row['Home Country'])
+            guestSerializer = Guest(name=row['name'],
+                            address=row['address'],
+                            city=row['city'],
+                            state=row['state'],
+                            zip_code=row['zip_code'],
+                            country=row['country'])
             guestSerializer.save()
             
-            for i in range(0, int(row['num guests'])):
+            for i in range(0, int(row['num_guests'])):
                 FamilyMember(guest=guestSerializer, name='guest_' + str(i)).save()
         return Response(status=200)
 

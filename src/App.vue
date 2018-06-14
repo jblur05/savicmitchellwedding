@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-navigation-drawer app class="wedding-pink lighten-3" v-model="isOpen" mobile-break-point="100000px">
       <v-list dense class="pt-0">
-        <v-list-tile v-for="item in links" :key="item.display" :to="item.link">
+        <v-list-tile v-for="item in links" :key="'mobile' + item.display" :to="item.link">
           <v-list-tile-content>
             <v-list-tile-title>{{ item.display }}</v-list-tile-title>
           </v-list-tile-content>
@@ -18,12 +18,11 @@
               <h1 class="display-3 tangerine-font-bold">Happily Ever After</h1>
            </v-layout>
            <v-layout justify-center>
-              <v-card flat class="transparent" v-if="!isMobile">
-                  <v-btn flat to="/">Home</v-btn>
-                  <v-btn flat>Details</v-btn>
-                  <v-btn flat to="/engagements">Engagements</v-btn>
-                  <v-btn flat to="/rsvp">RSVP</v-btn>
+            <v-card flat class="transparent" v-if="!isMobile">
+              <template v-for="item in links">
+                  <v-btn flat :to="item.link" :key="'main' + item.display">{{ item.display }}</v-btn>
                   <!-- <v-btn flat to="/manage">manage</v-btn> -->
+                </template>
               </v-card>
           </v-layout>
         </v-container>
@@ -31,7 +30,6 @@
           <router-view></router-view>
         </v-container>
       </v-content>
-    }
   </v-app>
 </template>
 

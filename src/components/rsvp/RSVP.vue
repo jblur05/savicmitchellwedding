@@ -1,19 +1,22 @@
 <template>
 <v-container grid-list-md text-xs-center >
   <v-layout row wrap v-if="curRsvp.isValid && curGuest">
-    <v-flex xs12 sm3>
-      <v-card>
-        <div>
-          <p class="display-2 tangerine-font-bold">{{ curGuest.name.charAt(0).toUpperCase() + curGuest.name.slice(1) }}</p>
-          <p>Number of Reserved Seats: {{ curGuest.familymember.length }}</p>
-          <p v-if="seatsNeeded > 0">Guests Attending: {{ seatsNeeded }}</p>
-          <p v-else>Not Attending</p>
-          <p v-if="curGuest.rsvp">RSVP Recieved: {{ new Date(curGuest.rsvp).toLocaleDateString() }}</p>
-        </div>
-        <div>
-          <v-btn @click.stop="submitRSVP" white>Submit</v-btn>
-        </div>
-      </v-card>
+    <v-flex xs12 sm3 >
+        <v-card class="grey lighten-2">
+          <v-card sm3>
+            <p class="display-2 tangerine-font-bold">{{ curGuest.name.charAt(0).toUpperCase() + curGuest.name.slice(1) }}</p>
+          </v-card>
+            <v-flex class="grey lighten-2">
+              <v-card>
+                <p>Number of Reserved Seats: {{ curGuest.familymember.length }}</p>
+                <p v-if="seatsNeeded > 0">Guests Attending: {{ seatsNeeded }}</p>
+                <p v-else>Not Attending</p>
+                <p v-if="curGuest.rsvp">RSVP Recieved: {{ new Date(curGuest.rsvp).toLocaleDateString() }}</p>
+                <v-btn @click.stop="submitRSVP" white>Submit</v-btn>
+                <v-btn @click.stop="logout" white>logout</v-btn>
+              </v-card>
+            </v-flex>
+        </v-card>
       <v-flex>
         <v-card m2 v-if="rsvpSubmitFailure !== undefined">
           <v-alert :value="!rsvpSubmitFailure" outline color="success">
@@ -28,19 +31,21 @@
     <v-flex xs12 sm8>
         <v-card>
             <p class="display-2 tangerine-font-bold">Menu Selection</p>
-                <template v-for="(item, index) in curGuest.familymember">
-                    <v-card :key="item.name">
-                      <span class="body-2">Guest {{ (index + 1) }}</span>
-                      <v-radio-group :row="windowSize > 850 ? true : false" v-model="item.food_choice">
-                        <v-radio
-                          v-for="option in foodChoices"
-                          :key="item.name + option.label"
-                          :label="`${option.label}`"
-                          :value="option.model"
-                        ></v-radio>
-                      </v-radio-group>
-                    </v-card>
-                </template>
+            <template v-for="(item, index) in curGuest.familymember">
+              <v-flex class="grey lighten-3" :key="item + index">
+                <v-card :key="item.name">
+                  <span class="body-2">Guest {{ (index + 1) }}</span>
+                  <v-radio-group :row="windowSize > 850 ? true : false" v-model="item.food_choice">
+                    <v-radio
+                      v-for="option in foodChoices"
+                      :key="item.name + option.label"
+                      :label="`${option.label}`"
+                      :value="option.model"
+                    ></v-radio>
+                  </v-radio-group>
+                </v-card>
+              </v-flex>
+            </template>
         </v-card>
     </v-flex>
   </v-layout>
@@ -85,9 +90,7 @@
 export default {
   created () {
     if (!this.curGuest && this.$route.params.guestURL) {
-      this.$store.dispatch('getGuest', this.$route.params.guestURL)
-    } else if (!this.curGuest) {
-      // show the rsvp search
+      this.$store.dispatch('setRSVPURL', this.$route.params.guestURL)
     }
   },
   data () {
@@ -173,6 +176,11 @@ export default {
       if (this.curGuest) {
         let willAttend = this.seatsNeeded > 0
         this.$store.dispatch('submitRSVP', willAttend)
+      }
+    },
+    logout () {
+      if (this.curGuest) {
+        this.$store.dispatch('logoutRSVP')
       }
     },
     findGuest () {

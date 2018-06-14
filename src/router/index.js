@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home.vue'
 import RSVP from '@/components/rsvp/RSVP.vue'
+import Details from '@/components/details/details.vue'
 import Manage from '@/components/manage/GuestList.vue'
 import Engagements from '@/components/engagements/Engagements.vue'
 
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/details',
+      name: 'Details',
+      component: Details
     },
     {
       path: '/rsvp/:guestURL?',

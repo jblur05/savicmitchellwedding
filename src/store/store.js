@@ -56,6 +56,12 @@ const store = new Vuex.Store({
         state.currentGuest = undefined
       }
     },
+    'INVALIDATE_LOGIN': function (state) {
+      state.curRsvp.name = ''
+      state.curRsvp.url = ''
+      state.isValid = false
+      state.currentGuest = undefined
+    },
     'SET_RSVP_URL': function (state, url) {
       state.curRsvp.url = url
     },
@@ -97,8 +103,8 @@ const store = new Vuex.Store({
         .catch((error) => store.commit('API_FAIL', error))
     },
     getGuest (store) {
-      let url = store.state.curRsvp.url
-      let name = store.state.curRsvp.name
+      let url = store.state.curRsvp.url.trim()
+      let name = store.state.curRsvp.name.trim()
 
       if (url && name) {
         // get the rsvp using the url and guest name
@@ -111,6 +117,11 @@ const store = new Vuex.Store({
           })
       }
       return undefined
+    },
+    setRSVPURL (store, url) {
+      if (url) {
+        store.commit('SET_RSVP_URL', url)
+      }
     },
     submitRSVP (store, willAttend) {
       if (this.state.currentGuest) {
@@ -132,6 +143,9 @@ const store = new Vuex.Store({
       } else {
         store.commit('API_FAIL', 'Error updating RSVP, guest undefined or empty')
       }
+    },
+    logoutRSVP (store) {
+      store.commit('INVALIDATE_LOGIN')
     }
   }
 })
