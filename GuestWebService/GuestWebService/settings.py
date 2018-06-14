@@ -28,6 +28,9 @@ DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = ['localhost', 'savicmitchellwedding.com']
 
+DB_USER = os.environ.get('DB_USER', 'db')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', '')
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -95,10 +98,21 @@ WSGI_APPLICATION = 'GuestWebService.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'savicmitchellwedding',
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

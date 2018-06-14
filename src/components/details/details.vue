@@ -58,11 +58,11 @@
                 <v-card-title>
                   <v-container text-xs-center>
                     <span>Tanoan Country Club</span><br/>
-                    <span>308 High St SE</span><br/>
-                    <span>Albuquerque, New Mexico 87102</span><br/>
+                    <span>10801 Academy Rd NE</span><br/>
+                    <span>Albuquerque, New Mexico 87111</span><br/>
                     <span>August 18, 2018</span><br/>
-                    <span>Cocktail Hour Five O'clock</span><br/>
-                    <span>Dinner Hour Six O'clock</span>
+                    <span>Cocktail at Hour Five O'clock</span><br/>
+                    <span>Dinner at Six O'clock</span>
                   </v-container>
                 </v-card-title>
                 <v-card-actions>
