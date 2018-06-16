@@ -25,8 +25,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'p@6t0g$ki!$f*(*kjz12&tcv3k#^$%
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
-
-ALLOWED_HOSTS = ['localhost', 'savicmitchellwedding.com']
+DEBUG = True
+ALLOWED_HOSTS = ['*', 'savicmitchellwedding.com']
 
 DB_USER = os.environ.get('DB_USER', 'db')
 DB_PASSWORD = os.environ.get('DB_PASSWORD', '')
@@ -46,25 +46,42 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/savicmit/gitproj/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 SECURE_CONTENT_TYPE_NOSNIFF=True
 SECURE_BROWSER_XSS_FILTER=True
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True 
 SECURE_HSTS_SECONDS=0
-# SECURE_SSL_REDIRECT=True
+SECURE_SSL_REDIRECT=True
 ROOT_URLCONF = 'GuestWebService.urls'
 X_FRAME_OPTIONS = 'DENY'
 
@@ -73,7 +90,7 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:80',
     'localhost:8000',
     '127.0.0.1:8080',
-    '127.0.0.1:80'
+    '127.0.0.1:8000',
 )
 
 TEMPLATES = [
@@ -98,23 +115,24 @@ WSGI_APPLICATION = 'GuestWebService.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'savicmitchellwedding',
+	'NAME': 'savicmit_guests',
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
-        'HOST': 'localhost',
+        'HOST': 'savicmitchellwedding.com',
         'PORT': '3306',
+	}
     }
-}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -152,4 +170,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATIC_ROOT="/home/savicmit/public_html/static"
 STATIC_URL = '/static/'
