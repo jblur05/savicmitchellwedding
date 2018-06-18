@@ -35,14 +35,12 @@ class Guest(models.Model):
 
 class FamilyMember(models.Model):
     CHICKEN = 'Chicken'
-    PORK = 'Pork'
-    RAV = 'Ravioli'
+    RAVIOLI = 'Ravioli'
     CHILD = 'Child'
     NOT_NEEDED='Not Needed'
     FOOD_CHOICES = (
         (CHICKEN, 'Chicken'),
-        (PORK, 'Pork'),
-        (RAV, 'Ravioli'),
+        (RAVIOLI, 'Ravioli'),
         (CHILD, 'Kid'),
         (NOT_NEEDED, 'Not Needed')
     )
@@ -50,7 +48,7 @@ class FamilyMember(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this family member")
     guest = models.ForeignKey('Guest', related_name='familymember', on_delete=models.CASCADE, null=False)
     name = models.CharField(max_length=200, help_text="The name of the family member")
-    food_choice = models.CharField(max_length=2, choices=FOOD_CHOICES, default=CHICKEN)
+    food_choice = models.CharField(max_length=200, choices=FOOD_CHOICES, default=CHICKEN)
 
     def __str__(self):
         return self.name + self.guest.name

@@ -16,23 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.models import User
-from django.contrib import admin
+
 #django rest framework
 from rest_framework import routers, viewsets
 from django.conf.urls import url, include
 from rest_framework import routers
 from GuestListWS import views
 
-router = routers.DefaultRouter()
+router = routers.DefaultRouter(trailing_slash=False)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    url(r'^', include(router.urls)),
-    url(r'^', include('GuestListWS.urls')),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    #url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^admin/', admin.site.urls),
-    #url(r'^login/', admin.site.urls),	
-    #path('guestbe/admin/', admin.site.urls)
+    #url(r'^', include(router.urls)),
+    path(r'', include('GuestListWS.urls')),
+    #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #path('admin/', admin.site.urls)
+    
 ]

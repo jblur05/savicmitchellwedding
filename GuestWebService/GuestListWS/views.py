@@ -6,18 +6,19 @@ from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
+from rest_framework.permissions import AllowAny
 import csv
 import io
 import json
-
 from GuestWebService.serializers import GuestSerializer, CreateGuestSerializer, FamilyMemberSerializer, RSVPSerializer, RSVPSubmitSerializer
 from .models import Guest, FamilyMember
+from django.views.decorators.csrf import csrf_exempt
 
 class GuestList(generics.ListCreateAPIView):
     queryset = Guest.objects.all()
     serializer_class = GuestSerializer
-
     def get(self, request, *args, **kwargs):
+        print("hello")
         guests = Guest.objects.all()
         familymembers = {}
         for guest in guests:
@@ -101,12 +102,13 @@ class GuestFileUploaderGeneric(generics.ListCreateAPIView):
                 FamilyMember(guest=guestSerializer, name='guest_' + str(i)).save()
         return Response(status=200)
 
+
 class GuestFileUploader(APIView):
     parser_classes = (MultiPartParser, FormParser,)
 
     def post(self, request, format=None):
         upload = request.FILES['data']
-        
+        print('hello')        
         upload.seek(0)        
         fileReader = csv.DictReader(io.StringIO(upload.read().decode('utf-8')))
 
