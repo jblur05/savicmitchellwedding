@@ -5,7 +5,8 @@ import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
-const apiRoot = 'http://localhost:8000'
+const apiRoot = 'https://guestbe.savicmitchellwedding.com'
+// const apiRoot = 'https://localhost:8000'
 
 const store = new Vuex.Store({
   state: {
@@ -93,7 +94,7 @@ const store = new Vuex.Store({
         .catch((error) => store.commit('API_FAIL', error))
     },
     addGuest (store, guest) {
-      return api.post(apiRoot + '/guest/', guest)
+      return api.post(apiRoot + '/makeguest/', guest)
         .then((response) => store.commit('ADD_GUEST', guest))
         .catch((error) => store.commit('API_FAIL', error))
     },

@@ -6,20 +6,16 @@ import router from './router'
 import '@/components/_globals'
 import store from './store/store.js'
 import Vuetify from 'vuetify'
-import Buefy from 'buefy'
-// import MobileDetect from 'mobile-detect'
 
 // css
-// import 'buefy/lib/buefy.css'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import '@/css/main.css'
 import '@/assets/stylus/main.styl'
 
-Vue.config.productionTip = false
-
+// Vue.config.productionTip = false
+console.log(process.env.VUE_APP_DEBUG)
 Vue.use(Vuetify)
-Vue.use(Buefy)
 
 /* eslint-disable no-new */
 const v = new Vue({
@@ -37,5 +33,3 @@ Vue.prototype.$createGuest = (name, numGuests, willAttend, address, city, state,
   console.log(value)
   return value
 }
-
-// Vue.prototype.$mobileDetect = new MobileDetect(req.headers['user-agent'])

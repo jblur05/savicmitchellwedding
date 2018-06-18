@@ -18,7 +18,7 @@
               <td>{{ props.item.address + ', ' + props.item.city + ', ' + props.item.state + ' ' + props.item.zip_code + ' ' + props.item.country }}</td>
               <td>{{ props.item.rsvp }}</td>
               <td>{{ props.item.rsvp_url }}</td>
-              <td><img v-bind:src="'https://chart.googleapis.com/chart?cht=qr&chs=177x177&chl=www.savicmitchellwedding.com/rsvp/' + props.item.rsvp_url"/></td>
+              <td><img v-bind:src="'https://chart.googleapis.com/chart?cht=qr&chs=177x177&chl=https://www.savicmitchellwedding.com/#/rsvp/' + props.item.rsvp_url"/></td>
             </template>
           </v-data-table>
        </v-layout>
@@ -84,7 +84,7 @@ export default {
     uploadFile (formData) {
       formData.append('file', this.files[0])
       axios.post(
-        'http://localhost:8000/upload/', formData, { headers: { 'Content-Type': 'multipart/form-data' } }
+        'https://guestbe.savicmitchellwedding.com/upload/upload/', formData, { headers: { 'Content-Type': 'multipart/form-data' } }
       ).then(response => {
         console.log(response)
         this.$store.dispatch('getGuests')
