@@ -2,7 +2,7 @@
     <v-jumbotron
         :gradient="gradient"
         height="500px"
-        src="/static/eng3.jpg"
+        :src="getSrc(6)"
         dark>
         <v-container class="home-text-container" fill-height>
           <v-layout align-center >
@@ -18,6 +18,17 @@
 <script>
 
 export default {
+  methods: {
+    getSrc (index) {
+      let windowSize = this.$store.state.windowSize
+      let imgSize = (windowSize <= 480 ? 480
+        : windowSize <= 640 ? 640
+          : windowSize <= 768 ? 768
+            : windowSize <= 1024 ? 1024
+              : 1150)
+      return '/static/imgs/' + imgSize + '/' + index + '.JPG'
+    }
+  },
   data () {
     return {
       gradient: 'to top right, rgba(0, 0, 0, .1), rgba(20, 20, 20, .5)'

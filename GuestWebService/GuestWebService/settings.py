@@ -26,11 +26,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'p@6t0g$ki!$f*(*kjz12&tcv3k#^$%
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
-ALLOWED_HOSTS = ['*', 'savicmitchellwedding.com']
+ALLOWED_HOSTS = ['localhost', 'savicmitchellwedding.com']
 
 DB_USER = os.environ.get('DB_USER', 'db')
 DB_PASSWORD = os.environ.get('DB_PASSWORD', '')
-
+CORS_ORIGIN_ALLOW_ALL = DEBUG
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,10 +46,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -64,7 +64,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/home/savicmit/gitproj/debug.log',
+            'filename': '../../debug.log',
         }
     },
     'loggers': {
@@ -76,19 +76,20 @@ LOGGING = {
     },
 }
 
-SECURE_CONTENT_TYPE_NOSNIFF=True
-SECURE_BROWSER_XSS_FILTER=True
-SESSION_COOKIE_SECURE=True
-CSRF_COOKIE_SECURE=True 
+#SECURE_CONTENT_TYPE_NOSNIFF=True
+#SECURE_BROWSER_XSS_FILTER=True
+#SESSION_COOKIE_SECURE=True
+#CSRF_COOKIE_SECURE=True 
 #SECURE_HSTS_SECONDS=100
-SECURE_SSL_REDIRECT=True
+#SECURE_SSL_REDIRECT=True
 ROOT_URLCONF = 'GuestWebService.urls'
-X_FRAME_OPTIONS = 'DENY'
-SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+#X_FRAME_OPTIONS = 'DENY'
+#SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 
 CORS_ORIGIN_WHITELIST = (
     'https://savicmitchellwedding.com',
-    'savicmitchellwedding.com'
+    'savicmitchellwedding.com',
+    'localhost',
 )
 
 TEMPLATES = [
@@ -123,10 +124,10 @@ WSGI_APPLICATION = 'GuestWebService.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-	'NAME': 'savicmit_guests',
+	    'NAME': 'savicmit_guests',
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
-        'HOST': 'savicmitchellwedding.com',
+        'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -170,6 +171,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-STATIC_ROOT="/home/savicmit/public_html/static"
+STATIC_ROOT='/static/'
+#STATIC_ROOT="/home/savicmit/public_html/static"
 STATIC_URL = '/static/'

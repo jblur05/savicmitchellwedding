@@ -50,43 +50,42 @@
     </v-flex>
   </v-layout>
   <v-layout row wrap v-else>
-    <v-flex >
-      <v-card transparent>
-      </v-card>
-    </v-flex>
-    <v-flex>
-      <v-card>
-        <p class="title tangerine-font-bold" xs10 offset-xs1>Find Your RSVP</p>
-        <v-form ref="rsvpFindForm" v-model="valid" lazy-validation>
-          <v-text-field
-            v-model="curRsvp.name"
-            label="Last Name"
-            :rules="nameRules"
-            required></v-text-field>
-          <v-text-field
-            v-model="curRsvp.url"
-            label="RSVP Code"
-            :rules="urlRules"
-            required></v-text-field>
-           <v-alert :value="rsvpRequestFailure" outline color="error" >
-            Unable to find RSVP
-           </v-alert>
-           <v-spacer></v-spacer>
-          <v-btn @click="findGuest" white>Submit</v-btn>
-        </v-form>
-      </v-card>
-    </v-flex>
-    <v-flex>
-      <v-card transparent>
-      </v-card>
-    </v-flex>
+    <v-flex sm3 class="mx-auto" >
+          <v-card>
+            <v-flex grey lighten-2 >
+              <v-card>
+                <v-card>
+                  <p class="title tangerine-font-bold">Find Your RSVP</p>
+                </v-card>
+                <v-card>
+                <v-form ref="rsvpFindForm" v-model="valid" lazy-validation>
+                  <v-text-field
+                    v-model="curRsvp.name"
+                    label="Last Name"
+                    :rules="nameRules"
+                    required ></v-text-field>
+                  <v-text-field
+                    v-model="curRsvp.url"
+                    label="RSVP Code"
+                    :rules="urlRules"
+                    required></v-text-field>
+                   <v-alert :value="rsvpRequestFailure" outline color="error" >
+                    Unable to find RSVP
+                   </v-alert>
+                   <v-spacer></v-spacer>
+                  <v-btn @click="findGuest" white>Submit</v-btn>
+                </v-form>
+              </v-card>
+              </v-card>
+            </v-flex>
+          </v-card>
+      </v-flex>
   </v-layout>
 </v-container>
 </template>
 
 <script>
 // import axios from 'axios'
-
 export default {
   created () {
     if (!this.curGuest && this.$route.params.guestURL) {
@@ -160,8 +159,6 @@ export default {
           }
         }
       }
-
-      console.info(this.$store.state.currentGuest)
       return guest
     },
     rsvpDate () {

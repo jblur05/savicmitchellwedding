@@ -72,7 +72,7 @@
           </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat v-on:click="$emit('close-add-guest-modal')" class="primary--text">Cancel</v-btn>
+          <v-btn flat v-on:click="close()" class="primary--text">Cancel</v-btn>
           <v-btn flat v-on:click="submit(true)" class="primary--text">Submit</v-btn>
         </v-card-actions>
       </v-card>
@@ -95,7 +95,6 @@ export default {
   },
   computed: {
     states () {
-      console.log('bad')
       var value = []
       for (var state of this.$globalStatesList) {
         value.push(state.name)
@@ -106,11 +105,14 @@ export default {
   },
   methods: {
     submit (submitForm) {
-      console.log('hello2')
       if (submitForm) {
         this.$emit('add-new-guest', { guestName: this.guestName, numGuests: this.numGuests, address: this.address, city: this.city, state: this.state, zipCode: this.zipCode, country: this.country })
       }
       this.isComponentModalActive = false
+    },
+    close () {
+      this.isComponentModalActive = false
+      this.$emit('close-add-guest-modal')
     }
   }
 }

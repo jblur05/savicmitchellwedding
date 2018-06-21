@@ -5,8 +5,8 @@ import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
-const apiRoot = 'https://guestbe.savicmitchellwedding.com'
-// const apiRoot = 'https://localhost:8000'
+// const apiRoot = 'https://guestbe.savicmitchellwedding.com'
+const apiRoot = process.env.BACKEND_URL
 
 const store = new Vuex.Store({
   state: {
@@ -109,7 +109,7 @@ const store = new Vuex.Store({
 
       if (url && name) {
         // get the rsvp using the url and guest name
-        return api.get(apiRoot + '/rsvp/' + url + '/' + name)
+        return api.get(apiRoot + '/rsvp/' + url + '/' + escape(name))
           .then((response) => {
             store.commit('SET_GUEST', response)
           })
@@ -129,7 +129,6 @@ const store = new Vuex.Store({
         // backup in case of failure
         this.state.currentGuest.rsvp = new Date().toISOString()
         this.state.currentGuest.will_attend = willAttend
-        console.log(apiRoot + '/rsvp/' + this.state.currentGuest.id)
 
         return api.patch(apiRoot + '/rsvp/' + this.state.currentGuest.id, this.state.currentGuest)
           .then((response) => {

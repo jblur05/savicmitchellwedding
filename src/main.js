@@ -6,16 +6,21 @@ import router from './router'
 import '@/components/_globals'
 import store from './store/store.js'
 import Vuetify from 'vuetify'
+import VueCarousel from 'vue-carousel'
 
 // css
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import '@/css/main.css'
-import '@/assets/stylus/main.styl'
 
 // Vue.config.productionTip = false
-console.log(process.env.VUE_APP_DEBUG)
 Vue.use(Vuetify)
+Vue.use(VueCarousel)
+
+router.beforeEach((to, from, next) => {
+  document.title = 'Savic-Mitchell Wedding'
+  next()
+})
 
 /* eslint-disable no-new */
 const v = new Vue({
@@ -25,11 +30,9 @@ const v = new Vue({
   components: { App },
   template: '<App/>'
 })
-
 v.$store.dispatch('getGuests')
 
 Vue.prototype.$createGuest = (name, numGuests, willAttend, address, city, state, country, zipCode) => {
   let value = {'name': name, 'num_guests': numGuests, 'willAttend': willAttend, 'address': address, 'city': city, 'state': state, 'zip_code': zipCode, 'country': country}
-  console.log(value)
   return value
 }

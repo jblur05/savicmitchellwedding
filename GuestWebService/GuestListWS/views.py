@@ -17,17 +17,19 @@ from django.views.decorators.csrf import csrf_exempt
 class GuestList(generics.ListCreateAPIView):
     queryset = Guest.objects.all()
     serializer_class = GuestSerializer
+
     def get(self, request, *args, **kwargs):
-        print("hello")
         guests = Guest.objects.all()
         familymembers = {}
-        for guest in guests:
-            #get all family members as a python json list for this guest and store them in a map so that we can add them to the response
-            #later
-            familymembers[str(guest.id)] = [familymember for familymember in FamilyMember.objects.filter(guest=guest).values()]
         response = super().get(request, *args, **kwargs)
-        for guest in response.data:
-            guest['num_guests'] = len(familymembers.get(guest.get('id')))
+        if(guests):
+            for guest in guests:
+                #get all family members as a python json list for this guest and store them in a map so that we can add them to the response
+                #later
+                familymembers[str(guest.id)] = [familymember for familymember in FamilyMember.objects.filter(guest=guest).values()]
+            response = super().get(request, *args, **kwargs)
+            for guest in response.data:
+                guest['num_guests'] = len(familymembers.get(guest.get('id')))
         return response
 
 class GuestDetail(generics.RetrieveAPIView):
@@ -107,8 +109,7 @@ class GuestFileUploader(APIView):
     parser_classes = (MultiPartParser, FormParser,)
 
     def post(self, request, format=None):
-        upload = request.FILES['data']
-        print('hello')        
+        upload = request.FILES['data']       
         upload.seek(0)        
         fileReader = csv.DictReader(io.StringIO(upload.read().decode('utf-8')))
 

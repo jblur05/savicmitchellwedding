@@ -7,18 +7,16 @@
         <v-layout>
           <v-data-table
             :headers="headers"
-            :items="guests"
-            hide-actions
-            class="elevation-1"
+            :items="$store.state.guests"
             key='aTable'>
-            <template slot="items" slot-scope="props">
-              <td class="text-xs-right">{{ props.item.id }}</td>
-              <td>{{ props.item.name }}</td>
-              <td>{{ props.item.num_guests}}</td>
-              <td>{{ props.item.address + ', ' + props.item.city + ', ' + props.item.state + ' ' + props.item.zip_code + ' ' + props.item.country }}</td>
-              <td>{{ props.item.rsvp }}</td>
-              <td>{{ props.item.rsvp_url }}</td>
-              <td><img v-bind:src="'https://chart.googleapis.com/chart?cht=qr&chs=177x177&chl=https://www.savicmitchellwedding.com/#/rsvp/' + props.item.rsvp_url"/></td>
+            <template slot="items" slot-scope="prop" >
+              <td class="text-xs-right">{{ prop.item.id }}</td>
+              <td>{{ prop.item.name }}</td>
+              <td>{{ prop.item.num_guests}}</td>
+              <td>{{ prop.item.address + ', ' + prop.item.city + ', ' + prop.item.state + ' ' + prop.item.zip_code + ' ' + prop.item.country }}</td>
+              <td>{{ prop.item.rsvp }}</td>
+              <td>{{ prop.item.rsvp_url }}</td>
+              <td><img v-bind:src="'https://chart.googleapis.com/chart?cht=qr&chs=177x177&chl=https://www.savicmitchellwedding.com/#/rsvp/' + prop.item.rsvp_url"/></td>
             </template>
           </v-data-table>
        </v-layout>
@@ -38,6 +36,7 @@ export default {
     return {
       filename: '',
       isComponentModalActive: false,
+      guesters: [],
       headers: [
         {
           text: 'ID',
@@ -69,13 +68,7 @@ export default {
     }
   },
   computed: {
-    guests () {
-      if (this.$store.state.guests.length > 0) {
-        console.info(this.$store.state.guests[0].rsvp)
-        console.info(this.$store.state.guests[1].rsvp)
-      }
-      return this.$store.state.guests
-    }
+
   },
   methods: {
     addNewGuest (guestInfo) {
@@ -86,12 +79,11 @@ export default {
       axios.post(
         'https://guestbe.savicmitchellwedding.com/upload/upload/', formData, { headers: { 'Content-Type': 'multipart/form-data' } }
       ).then(response => {
-        console.log(response)
         this.$store.dispatch('getGuests')
         console.log('SUCCESS!!')
       }).catch(response => {
-        console.log(response)
-        console.log('FAILURE!!')
+        console.err(response)
+        console.err('FAILURE!!')
       })
     }
   }
