@@ -76,15 +76,16 @@ LOGGING = {
     },
 }
 
-#SECURE_CONTENT_TYPE_NOSNIFF=True
-#SECURE_BROWSER_XSS_FILTER=True
-#SESSION_COOKIE_SECURE=True
-#CSRF_COOKIE_SECURE=True 
-#SECURE_HSTS_SECONDS=100
-#SECURE_SSL_REDIRECT=True
-ROOT_URLCONF = 'GuestWebService.urls'
-#X_FRAME_OPTIONS = 'DENY'
-#SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+if ( !DEBUG ) :
+    SECURE_CONTENT_TYPE_NOSNIFF=True
+    SECURE_BROWSER_XSS_FILTER=True
+    SESSION_COOKIE_SECURE=True
+    CSRF_COOKIE_SECURE=True 
+    #SECURE_HTTPS_SECONDS=100
+    SECURE_SSL_REDIRECT=True
+    ROOT_URLCONF = 'GuestWebService.urls'
+    X_FRAME_OPTIONS = 'DENY'
+    SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 
 CORS_ORIGIN_WHITELIST = (
     'https://savicmitchellwedding.com',
@@ -113,13 +114,6 @@ WSGI_APPLICATION = 'GuestWebService.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
 
 DATABASES = {
     'default': {
