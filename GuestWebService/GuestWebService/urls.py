@@ -18,6 +18,7 @@ from django.urls import path
 from django.contrib.auth.models import User
 
 #django rest framework
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from rest_framework import routers, viewsets
 from django.conf.urls import url, include
 from rest_framework import routers
@@ -29,4 +30,7 @@ router = routers.DefaultRouter()
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'', include('GuestListWS.urls')),
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-refresh/', refresh_jwt_token),
+    url(r'^auth-jwt-verify/', verify_jwt_token),
 ]

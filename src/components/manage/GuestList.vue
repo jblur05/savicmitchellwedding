@@ -1,5 +1,8 @@
 <template>
     <v-content>
+      <Login v-if="!isLoggedIn" v-on:loggedIn="getGuests()">
+      </Login>
+      <v-content v-else>
         <v-card white>
           <file-upload v-model="filename" @formData="uploadFile"></file-upload>
           <add-user-modal :isComponentModalActive="isComponentModalActive" v-on:close-add-guest-modal="isComponentModalActive=false" v-on:add-new-guest="addNewGuest"></add-user-modal>
@@ -7,7 +10,7 @@
         <v-layout>
           <v-data-table
             :headers="headers"
-            :items="$store.state.guests"
+            :items="guestList"
             key='aTable'>
             <template slot="items" slot-scope="prop" >
               <td class="text-xs-right">{{ prop.item.id }}</td>
@@ -20,17 +23,19 @@
             </template>
           </v-data-table>
        </v-layout>
+     </v-content>
     </v-content>
 </template>
 
 <script>
 import AddUserModal from './AddUserModal.vue'
 import FileUpload from './FileUpload.vue'
+import Login from './Login.vue'
 import axios from 'axios'
 
 export default {
   components: {
-    AddUserModal, FileUpload
+    AddUserModal, FileUpload, Login
   },
   data () {
     return {
@@ -68,9 +73,17 @@ export default {
     }
   },
   computed: {
-
+    isLoggedIn () {
+      return this.$store.state.isLoggedIn
+    },
+    guestList () {
+      return this.$store.state.guests
+    }
   },
   methods: {
+    getGuests () {
+      this.$store.dispatch('getGuests')
+    },
     addNewGuest (guestInfo) {
       this.$store.dispatch('addGuest', this.$createGuest(guestInfo.guestName, guestInfo.numGuests, false, guestInfo.address, guestInfo.city, guestInfo.state, guestInfo.country, guestInfo.zipCode))
     },

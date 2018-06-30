@@ -23,14 +23,13 @@ router.beforeEach((to, from, next) => {
 })
 
 /* eslint-disable no-new */
-const v = new Vue({
+new Vue({
   el: '#app',
   router,
   store: store,
   components: { App },
   template: '<App/>'
 })
-v.$store.dispatch('getGuests')
 
 Vue.prototype.$createGuest = (name, numGuests, willAttend, address, city, state, country, zipCode) => {
   let value = {'name': name, 'num_guests': numGuests, 'willAttend': willAttend, 'address': address, 'city': city, 'state': state, 'zip_code': zipCode, 'country': country}

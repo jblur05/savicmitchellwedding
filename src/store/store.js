@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import api from './api.js'
 import createPersistedState from 'vuex-persistedstate'
 
+const cookieName = 'tokCookie'
 Vue.use(Vuex)
 
 // const apiRoot = 'https://guestbe.savicmitchellwedding.com'
@@ -21,7 +22,11 @@ const store = new Vuex.Store({
       name: '',
       url: '',
       isValid: false
-    }
+    },
+    endPoints: {
+      obtainJWT: 'api-token-auth'
+    },
+    isLoggedIn: false
   },
   plugins: [
     createPersistedState({
@@ -29,6 +34,16 @@ const store = new Vuex.Store({
       paths: ['curRsvp', 'currentGuest']
     })
   ],
+  getters: {
+    jwtToken: state => {
+      var value = '; ' + document.cookie
+      var parts = value.split('; ' + cookieName + '=')
+      if (parts.length === 2) {
+        return parts.pop().split(';').shift()
+      }
+      return undefined
+    }
+  },
   mutations: {
     'GET_GUESTS': function (state, response) {
       state.guests = response.body
@@ -82,6 +97,15 @@ const store = new Vuex.Store({
     'SET_WINDOW_SIZE': function (state, windowSize) {
       state.windowSize = windowSize
       state.isMobile = windowSize < 770
+    },
+    'UPDATE_TOKEN': function (state, jwtToken) {
+      if (jwtToken) {
+        var d = new Date()
+        d.setTime(d.getTime() + (36 * 60 * 60 * 1000))
+        var expires = 'expires=' + d.toUTCString()
+        document.cookie = cookieName + '=' + jwtToken + ';' + expires + ';path=/'
+        state.isLoggedIn = true
+      }
     }
   },
   actions: {
@@ -89,17 +113,17 @@ const store = new Vuex.Store({
       store.commit('SET_WINDOW_SIZE', size)
     },
     getGuests (store) {
-      return api.get(apiRoot + '/guests/')
+      return api.get(apiRoot + '/guests/', this.getters.jwtToken)
         .then((response) => store.commit('GET_GUESTS', response))
         .catch((error) => store.commit('API_FAIL', error))
     },
     addGuest (store, guest) {
-      return api.post(apiRoot + '/makeguest/', guest)
+      return api.post(apiRoot + '/makeguest/', guest, this.getters.jwtToken)
         .then((response) => store.commit('ADD_GUEST', guest))
         .catch((error) => store.commit('API_FAIL', error))
     },
     removeGuest (store, guest) {
-      return api.delete(apiRoot + '/guest/', guest)
+      return api.delete(apiRoot + '/guest/', guest, this.getters.jwtToken)
         .then(store.commit('REMOVE_GUEST', guest))
         .catch((error) => store.commit('API_FAIL', error))
     },
@@ -146,6 +170,20 @@ const store = new Vuex.Store({
     },
     logoutRSVP (store) {
       store.commit('INVALIDATE_LOGIN')
+    },
+    obtainToken (store, payload) {
+      console.log(JSON.stringify(payload))
+      api.post(apiRoot + '/' + this.state.endPoints.obtainJWT + '/', JSON.stringify(payload))
+        .then((response) => {
+          if (response.status === 200) {
+            this.commit('UPDATE_TOKEN', response.data.token)
+          } else if (response.status === 403) {
+            this.state.isLoggedIn = false
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 })

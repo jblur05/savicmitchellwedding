@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-import os
+import os, datetime
 import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +23,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'p@6t0g$ki!$f*(*kjz12&tcv3k#^$%
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
-ALLOWED_HOSTS = ['*', 'savicmitchellwedding.com']
+ALLOWED_HOSTS = ['localhost', 'savicmitchellwedding.com']
 
 DB_USER = os.environ.get('DB_USER', 'db')
 DB_PASSWORD = os.environ.get('DB_PASSWORD', '')
@@ -54,23 +54,27 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': '/home/savicmit/gitproj/debug.log',
-        }
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': '/home/savicmit/gitproj/debug.log',
+#         }
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1)
 }
 
 if DEBUG == False:
@@ -86,6 +90,7 @@ if DEBUG == False:
 ROOT_URLCONF = 'GuestWebService.urls'
 
 CORS_ORIGIN_WHITELIST = (
+    'localhost:8080',
     'https://savicmitchellwedding.com',
     'savicmitchellwedding.com'
 )
@@ -115,10 +120,10 @@ WSGI_APPLICATION = 'GuestWebService.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-	'NAME': 'savicmit_guests',
+	    'NAME': 'savicmit_guests',
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
-        'HOST': 'savicmitchellwedding.com',
+        'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -144,6 +149,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
 
 
 # Internationalization
