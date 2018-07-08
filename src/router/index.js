@@ -5,6 +5,7 @@ import RSVP from '@/components/rsvp/RSVP.vue'
 import Details from '@/components/details/details.vue'
 import Manage from '@/components/manage/GuestList.vue'
 import Engagements from '@/components/engagements/Engagements.vue'
+import Registry from '@/components/registry/Registry.vue'
 
 Vue.use(Router)
 
@@ -54,6 +55,16 @@ export default new Router({
       path: '/engagements',
       name: 'Engagements',
       component: Engagements,
+      meta: [
+        {
+          name: 'Savic Mitchell Wedding'
+        }
+      ]
+    },
+    {
+      path: '/registry',
+      name: 'Registry',
+      component: Registry,
       meta: [
         {
           name: 'Savic Mitchell Wedding'

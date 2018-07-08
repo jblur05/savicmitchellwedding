@@ -59,6 +59,10 @@ export default {
           link: 'engagements'
         },
         {
+          display: 'Registry',
+          link: 'registry'
+        },
+        {
           display: 'RSVP',
           link: 'rsvp'
         }
