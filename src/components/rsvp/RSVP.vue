@@ -18,12 +18,17 @@
             </v-flex>
         </v-card>
       <v-flex>
+        <v-card m2 v-if="!submissionValid">
+          <v-alert :value=true outline color="error">
+            Please Correct the RSVP Form then Click Submit
+          </v-alert>
+        </v-card>
         <v-card m2 v-if="rsvpSubmitFailure !== undefined">
           <v-alert :value="!rsvpSubmitFailure" outline color="success">
             Successfully Submitted RSVP
           </v-alert>
-          <v-alert :value="rsvpSubmitFailure" outline color="success">
-            Successfully Submitted RSVP
+          <v-alert :value="rsvpSubmitFailure" outline color="error">
+            Failed To Submit RSVP Call 801-721-1916
           </v-alert>
         </v-card>
       </v-flex>
@@ -31,21 +36,30 @@
     <v-flex xs12 sm8>
         <v-card>
             <p class="display-2 tangerine-font-bold">Menu Selection</p>
-            <template v-for="(item, index) in curGuest.familymember">
-              <v-flex class="grey lighten-3" :key="item + index">
-                <v-card :key="item.name">
-                  <span class="body-2">Guest {{ (index + 1) }}</span>
-                  <v-radio-group :row="windowSize > 850 ? true : false" v-model="item.food_choice">
-                    <v-radio
-                      v-for="option in foodChoices"
-                      :key="item.name + option.label"
-                      :label="`${option.label}`"
-                      :value="option.model"
-                    ></v-radio>
-                  </v-radio-group>
-                </v-card>
-              </v-flex>
-            </template>
+            <v-form ref="rsvpSubmissionForm" lazy-validation>
+              <template v-for="(item, index) in curGuest.familymember">
+                <v-flex class="grey lighten-3" :key="index + 'guest_'">
+                  <v-card>
+                    <!-- <span class="body-2">Guest {{ (index + 1) }}</span> -->
+                    <v-text-field
+                      v-model="item.name"
+                      label="First Name"
+                      :rules="[value => validateName(item)]"
+                      :key="'guest_name_' + index"
+                      required
+                    ></v-text-field>
+                    <v-radio-group :row="windowSize > 850 ? true : false" v-model="item.food_choice">
+                      <v-radio
+                        v-for="option in foodChoices"
+                        :label="`${option.label}`"
+                        :value="option.model"
+                        :key="'guest_food_' + option.label"
+                      ></v-radio>
+                    </v-radio-group>
+                  </v-card>
+                </v-flex>
+              </template>
+          </v-form>
         </v-card>
     </v-flex>
   </v-layout>
@@ -62,7 +76,6 @@
                   <v-text-field
                     v-model="curRsvp.name"
                     label="Last Name"
-                    :rules="nameRules"
                     required ></v-text-field>
                   <v-text-field
                     v-model="curRsvp.url"
@@ -96,6 +109,7 @@ export default {
     return {
       radio: '',
       valid: true,
+      submissionValid: true,
       foodChoices: [
         {
           label: 'Chicken',
@@ -114,13 +128,11 @@ export default {
           model: 'Not Needed'
         }
       ],
-      // form validation rules
-      nameRules: [
-        v => !!v || 'Name is required'
-      ],
-      urlRules: [
-        v => !!v || 'URL is required'
-      ]
+      rules: {
+        required: value => {
+          return !!value || 'Required.'
+        }
+      }
     }
   },
   computed: {
@@ -170,7 +182,8 @@ export default {
   },
   methods: {
     submitRSVP () {
-      if (this.curGuest) {
+      this.$refs.rsvpSubmissionForm.validate()
+      if (this.curGuest && this.checkGuest()) {
         let willAttend = this.seatsNeeded > 0
         this.$store.dispatch('submitRSVP', willAttend)
       }
@@ -183,6 +196,26 @@ export default {
     findGuest () {
       if (this.$refs.rsvpFindForm.validate()) {
         this.$store.dispatch('getGuest')
+      }
+    },
+    validateName (guestFamilyMember) {
+      if (!guestFamilyMember.name && guestFamilyMember.food_choice !== 'Not Needed') {
+        return 'required'
+      }
+      return true
+    },
+    checkGuest () {
+      if (this.curGuest) {
+        this.$store.state.rsvpSubmitFailure = undefined
+        for (var guestMember of this.curGuest.familymember) {
+          if (!guestMember.name && guestMember.food_choice !== 'Not Needed') {
+            this.submissionValid = false
+            return false
+          }
+
+          this.submissionValid = true
+          return true
+        }
       }
     }
   }
