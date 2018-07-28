@@ -8,23 +8,47 @@
            <v-layout row white justify-center>
             <v-btn color="error" dark @click.native.stop="logout()">Logout</v-btn>
           </v-layout>
+          <v-layout row white justify-center>
+            <div>Number of Guests: {{ weddingStats.numGuests }}<br/>
+            Number Chicken: {{ weddingStats.chicken }}<br/>
+            Number Ravioli: {{ weddingStats.ravioli }}<br/>
+            Number Child: {{ weddingStats.child }}</div>
+          </v-layout>
         </v-card>
-        <v-layout>
-          <v-data-table
+        <v-data-table
             :headers="headers"
+            hide-actions
             :items="guestList"
             key='aTable'>
             <template slot="items" slot-scope="prop" >
-              <td class="text-xs-right">{{ prop.item.id }}</td>
-              <td>{{ prop.item.name }}</td>
-              <td>{{ prop.item.num_guests}}</td>
-              <td>{{ prop.item.address + ', ' + prop.item.city + ', ' + prop.item.state + ' ' + prop.item.zip_code + ' ' + prop.item.country }}</td>
-              <td>{{ prop.item.rsvp }}</td>
-              <td>{{ prop.item.rsvp_url }}</td>
-              <td><img v-bind:src="'https://chart.googleapis.com/chart?cht=qr&chs=177x177&chl=https://www.savicmitchellwedding.com/#/rsvp/' + prop.item.rsvp_url"/></td>
+              <tr @click="prop.expanded = !prop.expanded">
+                <td class="text-xs-right">{{ prop.item.id }}</td>
+                <td>{{ prop.item.name }}</td>
+                <td>{{ prop.item.num_guests}}</td>
+                <td>{{ prop.item.address + ', ' + prop.item.city + ', ' + prop.item.state + ' ' + prop.item.zip_code + ' ' + prop.item.country }}</td>
+                <td>{{ prop.item.rsvp }}</td>
+                <td>{{ prop.item.rsvp_url }}</td>
+                <td>{{ prop.item.will_attend ? 'Attending' : 'Not Attending' }}</td>
+                <!-- <td><img v-bind:src="'https://chart.googleapis.com/chart?cht=qr&chs=177x177&chl=https://www.savicmitchellwedding.com/#/rsvp/' + prop.item.rsvp_url"/></td> -->
+              </tr>
+            </template>
+            <template slot="expand" slot-scope="prop">
+              <tr>
+                <td/>
+                <td>ID</td>
+                <td>guestName</td>
+                <td>food_choice</td>
+              </tr>
+              <template v-for="family_member in prop.item.family_members">
+                <tr :key="family_member.id">
+                  <td/>
+                  <td>{{ family_member.id }}</td>
+                  <td>{{ family_member.name }}</td>
+                  <td>{{ family_member.food_choice }}</td>
+                </tr>
+              </template>
             </template>
           </v-data-table>
-       </v-layout>
      </v-content>
     </v-content>
 </template>
@@ -70,6 +94,10 @@ export default {
         {
           text: 'RSVP URL',
           value: 'rsvpURL'
+        },
+        {
+          text: 'Will Attend',
+          value: 'willAttend'
         } ],
       files: []
     }
@@ -81,6 +109,9 @@ export default {
     },
     guestList () {
       return this.$store.state.guests
+    },
+    weddingStats () {
+      return this.$store.state.weddingStats
     }
   },
   methods: {

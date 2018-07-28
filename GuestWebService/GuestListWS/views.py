@@ -30,6 +30,7 @@ class GuestList(generics.ListCreateAPIView):
             response = super().get(request, *args, **kwargs)
             for guest in response.data:
                 guest['num_guests'] = len(familymembers.get(guest.get('id')))
+                guest['family_members'] = familymembers.get(guest.get('id'))
         return response
 
 class GuestDetail(generics.RetrieveAPIView):

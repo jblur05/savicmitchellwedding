@@ -19,6 +19,12 @@ const store = new Vuex.Store({
     windowSize: undefined,
     isMobile: false,
     isLoggedIn: !!getJWT(),
+    weddingStats: {
+      numGuests: 0,
+      chicken: 0,
+      ravioli: 0,
+      child: 0
+    },
     curRsvp: {
       name: '',
       url: '',
@@ -47,6 +53,37 @@ const store = new Vuex.Store({
   mutations: {
     'GET_GUESTS': function (state, response) {
       state.guests = response.body
+      let numGuests = 0
+      let numChicken = 0
+      let numRavioli = 0
+      let numChild = 0
+      for (let guest of response.body) {
+        if (guest.will_attend) {
+          for (let familyMember of guest.family_members) {
+            if (familyMember.food_choice === 'Chicken') {
+              numChicken += 1
+              numGuests += 1
+            }
+
+            if (familyMember.food_choice === 'Ravioli') {
+              numRavioli += 1
+              numGuests += 1
+            }
+
+            if (familyMember.food_choice === 'Child') {
+              numChild += 1
+              numGuests += 1
+            }
+          }
+        }
+      }
+
+      state.weddingStats = {
+        numGuests: numGuests,
+        chicken: numChicken,
+        ravioli: numRavioli,
+        child: numChild
+      }
     },
     'ADD_GUEST': function (state, response) {
       state.guests.push(response.body)
