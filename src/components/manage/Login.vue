@@ -44,11 +44,7 @@ export default {
   methods: {
     login () {
       if (this.$refs.managelogin.validate()) {
-        let self = this
         this.$store.dispatch('obtainToken', { 'username': this.username, 'password': this.password })
-          .then(response => {
-            self.$emit('loggedIn')
-          })
       }
     }
   }

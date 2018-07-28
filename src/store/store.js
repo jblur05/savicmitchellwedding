@@ -18,6 +18,7 @@ const store = new Vuex.Store({
     rsvpSubmitFailure: undefined,
     windowSize: undefined,
     isMobile: false,
+    isLoggedIn: !!getJWT(),
     curRsvp: {
       name: '',
       url: '',
@@ -25,8 +26,7 @@ const store = new Vuex.Store({
     },
     endPoints: {
       obtainJWT: 'api-token-auth'
-    },
-    isLoggedIn: false
+    }
   },
   plugins: [
     createPersistedState({
@@ -83,10 +83,8 @@ const store = new Vuex.Store({
     },
     'SUBMIT_RSVP': function (state, response) {
       if (response.status === 200) {
-        console.log('RSVP Successfully submitted')
         state.rsvpSubmitFailure = false
       } else {
-        console.error('RSVP not submitted Successfully')
         console.error(response)
       }
     },
@@ -98,14 +96,11 @@ const store = new Vuex.Store({
       state.windowSize = windowSize
       state.isMobile = windowSize < 770
     },
-    'UPDATE_TOKEN': function (state, jwtToken) {
-      if (jwtToken) {
-        var d = new Date()
-        d.setTime(d.getTime() + (36 * 60 * 60 * 1000))
-        var expires = 'expires=' + d.toUTCString()
-        document.cookie = cookieName + '=' + jwtToken + ';' + expires + ';path=/'
-        state.isLoggedIn = true
-      }
+    'MANAGE_LOGIN_SUCCESS': function (state) {
+      state.isLoggedIn = true
+    },
+    'MANAGE_LOGIN_FAIL': function (state) {
+      state.isLoggedIn = false
     }
   },
   actions: {
@@ -113,17 +108,17 @@ const store = new Vuex.Store({
       store.commit('SET_WINDOW_SIZE', size)
     },
     getGuests (store) {
-      return api.get(apiRoot + '/guests/', this.getters.jwtToken)
+      return api.get(apiRoot + '/guests/', getJWT(), undefined)
         .then((response) => store.commit('GET_GUESTS', response))
         .catch((error) => store.commit('API_FAIL', error))
     },
     addGuest (store, guest) {
-      return api.post(apiRoot + '/makeguest/', guest, this.getters.jwtToken)
+      return api.post(apiRoot + '/makeguest/', getJWT(), guest)
         .then((response) => store.commit('ADD_GUEST', guest))
         .catch((error) => store.commit('API_FAIL', error))
     },
     removeGuest (store, guest) {
-      return api.delete(apiRoot + '/guest/', guest, this.getters.jwtToken)
+      return api.delete(apiRoot + '/guest/', getJWT(), guest)
         .then(store.commit('REMOVE_GUEST', guest))
         .catch((error) => store.commit('API_FAIL', error))
     },
@@ -132,8 +127,9 @@ const store = new Vuex.Store({
       let name = store.state.curRsvp.name.trim()
 
       if (url && name) {
+        let jwtToken = getJWT()
         // get the rsvp using the url and guest name
-        return api.get(apiRoot + '/rsvp/' + url + '/' + escape(name))
+        return api.get(apiRoot + '/rsvp/' + url + '/' + escape(name), jwtToken, undefined)
           .then((response) => {
             store.commit('SET_GUEST', response)
           })
@@ -154,7 +150,7 @@ const store = new Vuex.Store({
         this.state.currentGuest.rsvp = new Date().toISOString()
         this.state.currentGuest.will_attend = willAttend
 
-        return api.patch(apiRoot + '/rsvp/' + this.state.currentGuest.id, this.state.currentGuest)
+        return api.patch(apiRoot + '/rsvp/' + this.state.currentGuest.id, undefined, this.state.currentGuest)
           .then((response) => {
             store.commit('SUBMIT_RSVP', response)
             if (response.status === 200) {
@@ -172,20 +168,42 @@ const store = new Vuex.Store({
       store.commit('INVALIDATE_LOGIN')
     },
     obtainToken (store, payload) {
-      console.log(JSON.stringify(payload))
-      api.post(apiRoot + '/' + this.state.endPoints.obtainJWT + '/', JSON.stringify(payload))
+      return api.post(apiRoot + '/' + this.state.endPoints.obtainJWT + '/', undefined, JSON.stringify(payload))
         .then((response) => {
-          if (response.status === 200) {
-            this.commit('UPDATE_TOKEN', response.data.token)
-          } else if (response.status === 403) {
-            this.state.isLoggedIn = false
+          let jwtToken = response.body.token
+          if (response.status === 200 && jwtToken) {
+            var d = new Date()
+            d.setTime(d.getTime() + (36 * 60 * 60 * 1000))
+            var expires = 'expires=' + d.toUTCString()
+            document.cookie = cookieName + '=' + jwtToken + ';' + expires + ';path=/'
+            this.commit('MANAGE_LOGIN_SUCCESS')
+          } else {
+            expireJWT()
+            this.commit('MANAGE_LOGIN_FAIL')
           }
         })
         .catch((error) => {
           console.log(error)
         })
+    },
+    manageLogout (store) {
+      expireJWT()
+      this.commit('MANAGE_LOGIN_FAIL')
     }
   }
 })
+
+function expireJWT () {
+  document.cookie = cookieName + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+}
+
+function getJWT () {
+  var value = '; ' + document.cookie
+  var parts = value.split('; ' + cookieName + '=')
+  if (parts.length === 2) {
+    return parts.pop().split(';').shift()
+  }
+  return undefined
+}
 
 export default store

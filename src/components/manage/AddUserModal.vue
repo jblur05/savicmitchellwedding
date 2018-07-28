@@ -1,6 +1,6 @@
 <template>
   <v-layout row justify-center>
-      <v-btn color="error" dark @click.native.stop="isComponentModalActive=true">Add Guest</v-btn>
+    <v-btn color="error" dark @click.native.stop="isComponentModalActive=true">Add Guest</v-btn>
     <v-dialog v-model="isComponentModalActive" persistent max-width="500px">
       <v-card>
         <v-card-title class="headline">Add User</v-card-title>

@@ -20,7 +20,7 @@
                   </v-container>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn flat color="orange" target="_blank" href="https://www.google.com/maps/dir/''/st+george+greek+orthodox+church+albuquerque/data=!4m5!4m4!1m0!1m2!1m1!1s0x87220ca2a7ee55d9:0x68542fd578e4dc25?sa=X&ved=0ahUKEwi507HP1-HbAhUK3IMKHXMdAq4Q9RcIvAEwFA">Directions</v-btn>
+                  <v-btn flat color="pink lighten-3" target="_blank" href="https://www.google.com/maps/dir/''/st+george+greek+orthodox+church+albuquerque/data=!4m5!4m4!1m0!1m2!1m1!1s0x87220ca2a7ee55d9:0x68542fd578e4dc25?sa=X&ved=0ahUKEwi507HP1-HbAhUK3IMKHXMdAq4Q9RcIvAEwFA">Directions</v-btn>
                 </v-card-actions>
                 </v-card>
             </v-flex>
@@ -66,7 +66,7 @@
                   </v-container>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn flat color="orange" target="_blank" href="https://www.google.com/maps/dir/''/tanoan+country+club/data=!4m5!4m4!1m0!1m2!1m1!1s0x87189fcc84f27a5b:0x69ef4b3d58fccc8e?sa=X&ved=0ahUKEwjS87Xk2OHbAhVB94MKHS0kDj0Q9RcIpAEwDg" >Directions</v-btn>
+                  <v-btn flat color="pink lighten-3" target="_blank" href="https://www.google.com/maps/dir/''/tanoan+country+club/data=!4m5!4m4!1m0!1m2!1m1!1s0x87189fcc84f27a5b:0x69ef4b3d58fccc8e?sa=X&ved=0ahUKEwjS87Xk2OHbAhVB94MKHS0kDj0Q9RcIpAEwDg" >Directions</v-btn>
                 </v-card-actions>
                 </v-card>
             </v-flex>

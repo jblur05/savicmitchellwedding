@@ -34,6 +34,7 @@ class GuestList(generics.ListCreateAPIView):
 
 class GuestDetail(generics.RetrieveAPIView):
     queryset = Guest.objects.all()
+    authentication_classes = []
     serializer_class = GuestSerializer
 
 class CreateGuest(generics.CreateAPIView):
@@ -42,15 +43,18 @@ class CreateGuest(generics.CreateAPIView):
 
 class FamilyMemberList(generics.ListCreateAPIView):
     queryset = FamilyMember.objects.all()
+    authentication_classes = []
     serializer_class = FamilyMemberSerializer
 
 class FamilyMemberDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = FamilyMember.objects.all()
+    authentication_classes = []
     serializer_class = FamilyMemberSerializer
 
 class RSVPRetriever(generics.RetrieveAPIView):
     serializer_class = RSVPSerializer
-
+    authentication_classes = ()
+    permission_classes = ()
     def get_object(self):
         queryset = self.get_queryset()
         queryset = self.filter_queryset(queryset)  # Apply any filter backends
@@ -62,10 +66,11 @@ class RSVPRetriever(generics.RetrieveAPIView):
 class RSVPUpdater(generics.UpdateAPIView):
     queryset = Guest.objects.all()
     serializer_class = RSVPSubmitSerializer
-
+    authentication_classes = ()
+    permission_classes = ()
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
-        
+        print(request.data)
         family_members_data = request.data.pop('familymember')
         serializer = self.get_serializer(instance, data=request.data, partial=True)
         

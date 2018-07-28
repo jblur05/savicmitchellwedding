@@ -1,11 +1,13 @@
 <template>
     <v-content>
-      <Login v-if="!isLoggedIn" v-on:loggedIn="getGuests()">
+      <Login v-if="!isLoggedIn">
       </Login>
       <v-content v-else>
         <v-card white>
-          <file-upload v-model="filename" @formData="uploadFile"></file-upload>
           <add-user-modal :isComponentModalActive="isComponentModalActive" v-on:close-add-guest-modal="isComponentModalActive=false" v-on:add-new-guest="addNewGuest"></add-user-modal>
+           <v-layout row white justify-center>
+            <v-btn color="error" dark @click.native.stop="logout()">Logout</v-btn>
+          </v-layout>
         </v-card>
         <v-layout>
           <v-data-table
@@ -74,6 +76,7 @@ export default {
   },
   computed: {
     isLoggedIn () {
+      this.getGuests()
       return this.$store.state.isLoggedIn
     },
     guestList () {
@@ -82,7 +85,9 @@ export default {
   },
   methods: {
     getGuests () {
-      this.$store.dispatch('getGuests')
+      if (this.$store.state.isLoggedIn) {
+        this.$store.dispatch('getGuests')
+      }
     },
     addNewGuest (guestInfo) {
       this.$store.dispatch('addGuest', this.$createGuest(guestInfo.guestName, guestInfo.numGuests, false, guestInfo.address, guestInfo.city, guestInfo.state, guestInfo.country, guestInfo.zipCode))
@@ -93,11 +98,13 @@ export default {
         'https://guestbe.savicmitchellwedding.com/upload/upload/', formData, { headers: { 'Content-Type': 'multipart/form-data' } }
       ).then(response => {
         this.$store.dispatch('getGuests')
-        console.log('SUCCESS!!')
       }).catch(response => {
         console.err(response)
         console.err('FAILURE!!')
       })
+    },
+    logout () {
+      this.$store.dispatch('manageLogout')
     }
   }
 }

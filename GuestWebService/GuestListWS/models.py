@@ -47,7 +47,7 @@ class FamilyMember(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this family member")
     guest = models.ForeignKey('Guest', related_name='familymember', on_delete=models.CASCADE, null=False)
-    name = models.CharField(max_length=200, help_text="The name of the family member")
+    name = models.CharField(max_length=200, help_text="The name of the family member", blank=True, null=True)
     food_choice = models.CharField(max_length=200, choices=FOOD_CHOICES, default=CHICKEN)
 
     def __str__(self):
